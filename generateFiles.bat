@@ -2,7 +2,7 @@
 
 title GenerateVisualStudioFilesScript
 
-set proyectName=%CD%\NewGame.uproject
+set proyectName=%CD%\MyProject.uproject
 
 IF EXIST "C:/Program Files (x86)/Epic Games/UE_4.16" (
 	"C:/Program Files (x86)/Epic Games/UE_4.16/Engine/Binaries/DotNET/UnrealBuildTool.exe" -projectfiles -project=%proyectName% -game -rocket -progress
