@@ -19,6 +19,9 @@
 \setlength{\oddsidemargin}{0mm} % Adjust margins to center the colored title box
 \setlength{\evensidemargin}{0mm} % Margins on even pages - only necessary if adding more content to this template
 
+\renewcommand\thesection{\arabic{section}} %Section numbering
+\renewcommand\thesubsection{\thesection.\arabic{subsection}} %Subsection numbering
+
 \setlength{\voffset}{-1.2cm}
 \setlength{\textheight}{650pt}
 \setlength{\parindent}{0pt}
@@ -31,6 +34,7 @@
 \rhead{Game Design Document}
 \rfoot{\thepage}
 
+\newcommand{\sectionbreak}{\clearpage}
 
 
 \makeindex
@@ -87,13 +91,12 @@ Plataforma: \textit{XBox One, Windows PC}
 
 \setlength{\voffset}{0cm}
 \setlength{\parindent}{1cm}
+\setcounter{page}{1}
 
-\chapter{Game Overview}
+\part{Game Overview}
 
 \section{High Level Concept}
 \pagestyle{fancy}
-\setcounter{page}{1}
-
 
 Un juego multijugador\footnote{Este documento se incluye como anexo a un \textit{vertical slice} del juego descrito por el propio documento, que ejemplifica la experiencia de un modo de juego de combate de dos jugadores (uno de los cuales es manejado por la IA). Todas las features implementadas en dicho \textit{vertical slice} se indican como tales en sus respectivas secciones.} (pantalla partida y online) en tercera persona donde dos equipos cada uno con de 1 a 3 magos duelean en un pequeño escenario usando hechizos variados y espectaculares. Cada jugador deberá componer su biblioteca de hechizos en cada encuentro, escogiéndolos según la utilidad que tengan para contrarrestar al enemigo y sinergizar con sus aliados. 
 
@@ -107,10 +110,10 @@ La experiencia de juego se centra en hacer que el jugador sienta su maestría al
     \caption{Tomamos de Team Fortress 2 la variedad de gameplay, la velocidad de la acción y lo intuitivo que resulta para nuevos jugadores}
 \end{figure}
 
-\newpage
 \section{State of the Art}
+
 \subsection{Competitors}
-Este juego compite directamente con otros shooters multijugador competitivos como \textit{Call of Duty}, \textit{Battlefield}, \textit{S3 League} (éste en 3ª persona también), \textit{Counter Strike} etc. También entra en el mercado de los Multiplayer Online Battle Arena (MOBAs) y otros tipos de videojuego altamente competitivos, como \textit{DOTA} y \textit{LOL}. Dado que la temática es mágica-medieval y adulta también podría ocupar espacio de mercado de juegos de fantasía altamente centrados en gameplay en 3ª persona (con un multiplayer altamente competitivo) como la saga \textit{Dark Souls}.
+Este juego compite directamente con otros shooters multijugador competitivos como \textit{Call of Duty}, \textit{Battlefield}, \textit{PlayerUnknown's BattleGrounds (PUBG)} (éste en 3ª persona también), \textit{Counter Strike} etc. También entra en el mercado de los Multiplayer Online Battle Arena (MOBAs) y otros tipos de videojuego altamente competitivos, como \textit{Defense of the Ancients (DOTA)} y \textit{League of Legends (LOL)}. Dado que la temática es mágica-medieval y adulta también podría ocupar espacio de mercado de juegos de fantasía altamente centrados en gameplay en 3ª persona (con un multiplayer altamente competitivo) como la saga \textit{Dark Souls}.
 
 \subsection{Overcoming Competitors: Unique Selling Points}
 Para convencer a la gente que está jugando los juegos arriba mencionados optaremos por aprovechar:
@@ -121,8 +124,6 @@ Para convencer a la gente que está jugando los juegos arriba mencionados optare
 \item Situaciones espectaculares que hacen fácil que el juego se promocione a sí mismo en redes sociales, mediante el reenvío de gifs o vídeos con jugadas llamativas
 \item Personalización en todos los aspectos del juego (desde habilidades hasta apariencia)
 \end{itemize}
-
-\newpage
 
 \section{Visual Appeal}
 
@@ -139,8 +140,6 @@ Estamos orientados a hacer este juego lo más espectacular y variado posible. Si
 \subsection{Environment Appeal}
 
 Los entornos serán simples pero rápidamente identificables. La idea es que los entornos sirvan para aumentar la variedad de situaciones que el jugador afrontará durante sus partidas: aunque se ponga la atención en su atractivo visual éste no es el objetivo principal de nuestros entornos de juego.
-
-\newpage
 
 \section{Gameplay Features}     
 
@@ -163,8 +162,6 @@ El juego ofrece un modo de práctica contra maniquíes de mago, para probar y pr
 \item[Competitivo:] Modo ``Serio'' donde se asume mayor habilidad y coordinación dentro del equipo
 \end{description}
 
-\newpage
-
 En Quick Play o Competitivo pueden jugarse los siguientes modos:
 
 \begin{description}
@@ -173,10 +170,7 @@ En Quick Play o Competitivo pueden jugarse los siguientes modos:
 \item[Football:] El entorno de juego es un campo libre con dos ``porterías'' en los extremos, cada una de un equipo. El modo de juego consiste en combinar la lucha con el uso de los hechizos para meter la pelota en la portería contraria. Gana el equipo que más goles tenga al final del límite de tiempo.
 \item[King of the Hill:] Se designa una zona especial de captura en el mapa, con un tiempo límite para cada equipo. El tiempo límite de cada equipo desciende hacia 0 mientras la zona de captura está en sus manos. Gana el primer equipo que lleve a 0 su contador de tiempo límite.
 \end{description}
-
-\newpage 
-
-\chapter{Gameplay Description}
+\part{Gameplay Description}
 
 \section{Control}
 
@@ -190,8 +184,6 @@ El juego actualmente cuenta con controles para teclado y ratón, pero se recomie
     \caption{El control deberá ser completamente configurable, con estos valores por defecto en juego}
 \end{figure}
 
-\newpage
-
 \subsection{Keyboard + Mouse Config}
 
 En caso de no haber controlador XBox o similar disponible puede recurrirse al control mediante teclado y ratón, pero no se recomienda, ya que gran parte del game feel se ha pulido sobre mando y no hay force feedback disponible para este modo de control.
@@ -200,8 +192,6 @@ En caso de no haber controlador XBox o similar disponible puede recurrirse al co
     \centering
     \includegraphics[width=\textwidth]{keyboard}
 \end{figure}     
-
-\newpage
 
 \section{Game Structure}              
 
@@ -232,17 +222,13 @@ El diseño de los niveles es minimalista y simplificado, para dejar paso a gamep
     \caption{Un nivel de CTF. Las X representan banderas y los círculos son coberturas destructibles.}
 \end{figure}
 
-\newpage
-
-\chapter{Technical Details}
+\part{Technical Details}
 
 \section{Monetization: Game Life Cycle}
 
 La esperanza de vida del juego queda definida como 10.000 jugadores online diarios, ó 7 jugadores concurrentes buscando partida por minuto, ó 1 partida formándose por minuto. Llegado este punto el juego online es claramente insostenible (demasiado tiempo de espera por una partida). Todo plan de negocio planteado para este juego ha de tener este dato en cuenta. Para ello el juego debe ser constantemente rejugable y por tanto han de incluírse quests diarias para reclamar la atención regular del jugador combinado con un gameplay ajustado y dinámico.
 
 Todos los datos de juego (desbloqueos y personalización) se guardan en un sistema de servidores remoto que será accedido por el juego para matchmaking, esto aumenta los costes de mantenimiento del producto. Para costearlos se plantea un flujo de insumos proveniente de la venta de \textit{lootboxes} con contenido estético y nuevos elementos de jugabilidad (hechizos) para los personajes. A largo plazo puede extenderse a nuevos modos de juego o incluso campañas con foco narrativo que extiendan el universo de juego.
-
-\newpage
 
 \section{Network}
 
